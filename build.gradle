@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.7'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.mbc'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    /* 메이븐 리포지토리에서 코드를 가져와 코끼리를 누르면 가져온다*/
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'     /* 프론트 관련*/
+    implementation 'org.springframework.boot:spring-boot-starter-web'           /* spring-web*/s
+
+    compileOnly 'org.projectlombok:lombok'                                      /* lombok*/
+    annotationProcessor 'org.projectlombok:lombok'                              /* lombok*/
+    testCompileOnly 'org.projectlombok:lombok'                                  /* lombok*/
+    testAnnotationProcessor 'org.projectlombok:lombok'                          /* lombok*/
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'             /* boot 개발용*/
+
+    /* */
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'      /* 데이터베이스  관련*/
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'                          /* mariadb용*/
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'      /* 테스트 junit 메서드 단위 테스트*/
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'                /* junit용 코드*/
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
