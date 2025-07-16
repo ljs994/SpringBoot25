@@ -79,4 +79,14 @@ public class SampleController {
         // 리턴타입이 void이므로 /resources/templates/ex/ex2.html을 찾음
     } // ex2 메서드 종료
     
+    @GetMapping("/ex/ex3") // /resources/templates/ex/ex3.html
+    public void ex3(Model model) {
+
+        log.info("SampleController.ex3 메서드 실행");
+        
+        model.addAttribute("arr", new String[]{"전민기","김진우","전혜진"});
+        
+    } // ex3 메서드 종료
+    
+    
 }
